@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'haml'
 gem 'mysql2'
 gem 'strava-api-v3'
 
