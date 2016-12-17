@@ -1,0 +1,14 @@
+- if @activities.empty?
+  %p Oops, we couldn't find any activities in Strava, get your butt in gear
+- else
+  %table
+    %tr
+      %th Name
+      %th Date
+      %th
+
+    - @activities.each do |a|
+      %tr
+        %td= a.name
+        %td= a.start_date # TODO: Format with time zone
+        %td= link_to_activity(a)

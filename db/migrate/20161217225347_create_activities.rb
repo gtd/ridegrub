@@ -15,7 +15,7 @@ class CreateActivities < ActiveRecord::Migration[5.0]
 
       t.timestamps
 
-      t.index :strava_id
+      t.index :strava_id, unique: true
     end
   end
 end

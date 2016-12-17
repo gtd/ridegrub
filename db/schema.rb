@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20161217225347) do
     t.boolean  "businesses_processed"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["strava_id"], name: "index_activities_on_strava_id", using: :btree
+    t.index ["strava_id"], name: "index_activities_on_strava_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
 

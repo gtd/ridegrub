@@ -1,13 +1,5 @@
 module Strv # Avoid global namespace collision
   class << self
-    def client_id
-      Rails.application.secrets.strava_client_id
-    end
-
-    def client_secret
-      Rails.application.secrets.strava_client_secret
-    end
-
     def authorization_url
       domain = Rails.configuration.app_domain
       parameters = { client_id: client_id,
@@ -25,6 +17,25 @@ module Strv # Avoid global namespace collision
                                             code)
       Rails.logger.info(access_response)
       access_token = access_response['access_token']
+    end
+
+    def get_activities(user_access_token)
+      client = client(user_access_token)
+      client.list_athlete_activities
+    end
+
+    private
+
+    def client_id
+      Rails.application.secrets.strava_client_id
+    end
+
+    def client_secret
+      Rails.application.secrets.strava_client_secret
+    end
+
+    def client(user_access_token)
+      Strava::Api::V3::Client.new(access_token: user_access_token)
     end
   end
 end
