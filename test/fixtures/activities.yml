@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  strava_id: 
+  start_date: 2016-12-17 14:53:47
+  timezone: MyString
+  start_lat: 1.5
+  start_long: 1.5
+  end_lat: 1.5
+  end_long: 1.5
+  raw: MyText
+  businesses_processed: false
+
+two:
+  user: two
+  strava_id: 
+  start_date: 2016-12-17 14:53:47
+  timezone: MyString
+  start_lat: 1.5
+  start_long: 1.5
+  end_lat: 1.5
+  end_long: 1.5
+  raw: MyText
+  businesses_processed: false

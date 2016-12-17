@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :activities
+
   def strava_authorized?
     strava_access_token.present?
   end

@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217213105) do
+ActiveRecord::Schema.define(version: 20161217225347) do
+
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "strava_id"
+    t.string   "name"
+    t.datetime "start_date"
+    t.string   "timezone"
+    t.float    "start_lat",            limit: 24
+    t.float    "start_long",           limit: 24
+    t.float    "end_lat",              limit: 24
+    t.float    "end_long",             limit: 24
+    t.text     "raw",                  limit: 65535
+    t.boolean  "businesses_processed"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["strava_id"], name: "index_activities_on_strava_id", using: :btree
+    t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "strava_access_token"
@@ -18,4 +36,5 @@ ActiveRecord::Schema.define(version: 20161217213105) do
     t.datetime "updated_at",          null: false
   end
 
+  add_foreign_key "activities", "users"
 end
