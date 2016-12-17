@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_filter :load_user
+  before_action :load_user
 
   # Poor-mans user account for demo purposes, it just lives as long as your
   # session does, and guarantees we always have a user.
