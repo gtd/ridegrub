@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217225347) do
+ActiveRecord::Schema.define(version: 20161218002737) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -30,6 +30,33 @@ ActiveRecord::Schema.define(version: 20161217225347) do
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
 
+  create_table "businesses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "yelp_id"
+    t.string   "name"
+    t.string   "url"
+    t.string   "display_phone"
+    t.float    "rating",          limit: 24
+    t.text     "display_address", limit: 65535
+    t.float    "latitude",        limit: 24
+    t.float    "longitude",       limit: 24
+    t.text     "raw",             limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["yelp_id"], name: "index_businesses_on_yelp_id", unique: true, using: :btree
+  end
+
+  create_table "distances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "business_id"
+    t.integer  "activity_id"
+    t.integer  "meters"
+    t.integer  "point_type"
+    t.boolean  "close_to_point"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["activity_id"], name: "index_distances_on_activity_id", using: :btree
+    t.index ["business_id"], name: "index_distances_on_business_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "strava_access_token"
     t.datetime "created_at",          null: false
@@ -37,4 +64,6 @@ ActiveRecord::Schema.define(version: 20161217225347) do
   end
 
   add_foreign_key "activities", "users"
+  add_foreign_key "distances", "activities"
+  add_foreign_key "distances", "businesses"
 end

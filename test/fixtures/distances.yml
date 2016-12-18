@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  business: one
+  activity: one
+  meters: 1
+  point_type: 1
+  close_to_point: false
+
+two:
+  business: two
+  activity: two
+  meters: 1
+  point_type: 1
+  close_to_point: false
