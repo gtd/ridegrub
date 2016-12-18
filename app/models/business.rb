@@ -8,7 +8,7 @@ class Business < ApplicationRecord
       url: b.url,
       display_phone: b.display_phone,
       rating: b.rating,
-      display_address: b.location.address.join(','),
+      display_address: b.location.address.join(', '),
       latitude: b.location.coordinate.latitude,
       longitude: b.location.coordinate.longitude,
       raw: b.to_json
