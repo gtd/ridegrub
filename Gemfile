@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'haml'
 gem 'mysql2'
+gem 'resque'
 gem 'strava-api-v3'
 
 group :development, :test do
