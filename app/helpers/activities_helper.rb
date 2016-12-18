@@ -6,4 +6,9 @@ module ActivitiesHelper
       "..."
     end
   end
+
+  def format_distance(meters)
+    km = meters / 1000.0
+    "#{km.round(1)}km"
+  end
 end

@@ -1,2 +1,30 @@
-<h1>Activities#show</h1>
-<p>Find me in app/views/activities/show.html.erb</p>
+
+%p
+  = link_to "Recent Activities", activities_url
+  &gt;
+  %b= @activity.name
+
+%h2= "Grub near \"#{@activity.name}\" from #{@activity.start_date}"
+
+= form_tag activity_url(@activity), method: :get do
+  = label_tag "start" do 
+    = radio_button_tag('point_type', 0, params[:point_type] == '0')
+    Start of Activity
+  = label_tag "end" do 
+    = radio_button_tag('point_type', 1, params[:point_type] == '1')
+    End of Activity
+  = submit_tag "Refresh"
+
+- if !@activity.businesses_processed?
+  %p We haven't finished processing this one yet, please reload shortly.
+- elsif @distances.empty?
+  %p Oops, no businesses found! Were you out in the middle of nowhere?
+- else
+  - @distances.each do |d|
+    - b = d.business
+    %h3= b.name
+    %div= b.display_phone
+    %div= b.display_address
+    %div= "Rating: #{b.rating}"
+    %div= "Distance: #{format_distance d.meters}"
+    %br
