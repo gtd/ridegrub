@@ -15,6 +15,7 @@ class User < ApplicationRecord
       activity = activities.where(strava_id: a['id']).first ||
                  activities.build
       activity.update_attributes Activity.attributes_from_raw(a)
+      Resque.enqueue(ActivityJob, activity.id)
     end
   end
 end
